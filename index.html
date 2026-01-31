@@ -190,7 +190,7 @@
             color: white;
         }
 
-        /* ===== HERO SECTION ===== */
+        /* ===== HERO SECTION FLEXBOX LAYOUT ===== */
         .hero {
             padding-top: 160px;
             padding-bottom: 100px;
@@ -199,10 +199,15 @@
         }
 
         .hero-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            display: flex;
             align-items: center;
+            gap: 60px;
+            justify-content: space-between;
+        }
+
+        .hero-text {
+            flex: 7; /* 70% width untuk teks */
+            min-width: 0; /* Untuk mencegah overflow */
         }
 
         .hero-text h1 {
@@ -282,8 +287,17 @@
             border-color: transparent;
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
         .hero-image {
+            flex: 3; /* 30% width untuk foto */
+            min-width: 300px;
             position: relative;
+            text-align: center;
         }
 
         .image-wrapper {
@@ -323,14 +337,14 @@
         }
 
         .floating-element:nth-child(2) {
-            top: -20px;
-            right: -20px;
+            top: -15px;
+            right: -10px;
             animation-delay: 1s;
         }
 
         .floating-element:nth-child(3) {
-            bottom: 30px;
-            left: -30px;
+            bottom: 20px;
+            left: -15px;
             animation-delay: 2s;
         }
 
@@ -749,10 +763,39 @@
                 grid-template-columns: 1fr;
             }
             
-            /* Foto profil lebih kecil di mobile */
-            .profile-img {
+            /* Responsive untuk flexbox layout */
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text, .hero-image {
+                width: 100%;
+                flex: none;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .image-wrapper {
                 max-width: 300px;
                 margin: 0 auto;
+            }
+            
+            .floating-element {
+                transform: scale(0.9);
+            }
+            
+            .floating-element:nth-child(2) {
+                top: -10px !important;
+                right: -5px !important;
+            }
+            
+            .floating-element:nth-child(3) {
+                bottom: 15px !important;
+                left: -10px !important;
             }
         }
     </style>
@@ -788,20 +831,26 @@
     <section class="hero" id="home">
         <div class="container">
             <div class="hero-content">
+                <!-- Kolom Kiri: Teks (70% width) -->
                 <div class="hero-text">
                     <h1>Hi, I'm <span class="highlight">Aditz</span></h1>
                     <div class="typing-text" id="typingText"></div>
                     <p>A passionate student at <strong class="highlight">SMKN 9 Medan</strong>, majoring in Software Engineering. Previously studied at <strong class="highlight">SMP Al-Wasliyah</strong>. I build modern web applications and digital solutions.</p>
-                    <div>
+                    <div class="hero-buttons">
                         <a href="#projects" class="btn">View My Work <i class="fas fa-arrow-right"></i></a>
                         <a href="#contact" class="btn btn-outline">Get In Touch</a>
                     </div>
                 </div>
+                
+                <!-- Kolom Kanan: Foto (30% width) -->
                 <div class="hero-image">
                     <div class="image-wrapper">
-                        <!-- FOTO PROFIL ANDA (BULAT) -->
-                        <!-- Ganti URL dengan foto Anda sendiri -->
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Aditz - Web Developer" class="profile-img">
+                        <!-- FOTO PROFIL ANDA DISINI -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                             alt="Aditz - Web Developer" 
+                             class="profile-img">
+                        
+                        <!-- Floating Element 1: Web Developer -->
                         <div class="floating-element">
                             <i class="fas fa-code" style="color: var(--primary); font-size: 1.5rem;"></i>
                             <div>
@@ -809,6 +858,8 @@
                                 <div style="font-size: 0.8rem; color: var(--gray);">SMKN 9 Medan</div>
                             </div>
                         </div>
+                        
+                        <!-- Floating Element 2: Projects -->
                         <div class="floating-element">
                             <i class="fas fa-medal" style="color: var(--accent); font-size: 1.5rem;"></i>
                             <div>
